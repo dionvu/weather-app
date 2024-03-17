@@ -1,38 +1,45 @@
 import '../src/style/style.css'
 
-interface City {
+interface Weather {
   location: {
     name: string;
     region: string;
     country: string;
   };
-  conditions: {
-    text: string;
-    icon: string;
-  };
+  current: {
+    condition: {
+      text: string;
+      icon: string;
+    }
+  }
 }
 
-async function getApiData(cityName: string): Promise<City> {
-  const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=2b3d697043e1487987335611240703&q=${cityName}`, { mode: 'cors' });
-  const data: City = await response.json();
-  console.log(data.location.region);
-  return data;
-}
+let city: string | null = '';
 
-let name: string | null = '';
+city = prompt();
 
-name = prompt("Enter city name!");
+if (city)
+  updateWeather(city);
 
-name = name ? name : '';
+async function updateWeather(city: string) {
+  try {
+    const data: Weather = await getWeather(city);
+    console.log(data.current.condition.text);
+  }
+  catch (error) {
+    console.log(error);
+  }
+};
 
-console.log(name);
+async function getWeather(city: string): Promise<Weather> {
+  const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=2b3d697043e1487987335611240703&q=${city}`, { mode: 'cors' });
 
-const data = getApiData(name);
+  if (!response.ok)
+    return Promise.reject(new Error(`ERROR: Unable to fetch data for ${city}.`));
 
-data
-  .then(() => {
-    console.log(`Success grabbing API data for ${name}.`);
-  })
-  .catch(error => {
-    console.error(`ERROR: ${error}`);
-  });
+  const data: Weather = await response.json();
+
+  console.table(data);
+
+  return Promise.resolve(data);
+};
