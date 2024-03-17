@@ -1,15 +1,36 @@
+@font-face {
+  font-family: 'FredokaOne';
+  src: url('/assets/FredokaOne-Regular.ttf') format('woff2');
+}
+
+@font-face {
+  font-family: 'Share';
+  src: url('/assets/Share-Regular.ttf') format('woff2');
+}
+
 :root {
   font-size: 16px;
   font-family: sans-serif;
+  --primarly-font: 'FredokaOne';
+  --secondary-font: 'Share';
+
+  --location-size: 4rem;
+  --condition-size: 2rem;
 }
 
 body {
+  height: 100vh;
   background: black;
   color: white;
+
+  margin: 0;
+  padding: 0;
 }
 
 nav {
+  position: fixed;
   height: 50px;
+  width: 100vw;
 }
 
 ul {
@@ -17,9 +38,8 @@ ul {
   justify-content: space-between;
   list-style: none;
 
-
   padding: 2px;
-  padding-right: 20px;
+  padding-right: 50px;
   padding-left: 20px;
 }
 
@@ -28,12 +48,66 @@ form {
   flex-direction: column;
 }
 
-span {
-  font-size: 0.8rem;
+#search-error {
   display: none;
+  padding-left: 10px;
+  margin-top: 5px;
+  text-align: left;
+  font-size: 0.8rem;
   color: red;
 }
 
-img {
-  filter: brightness(50%) saturate(0%);
+#weather {
+  display: flex;
+  position: absolute;
+  padding: 50px;
+}
+
+#weather>div {
+  margin: 0;
+}
+
+#weather>div>h1 {
+  font-size: var(--location-size);
+  font-family: var(--primarly-font);
+  font-weight: 500;
+  margin: 0;
+}
+
+#weather>div>div {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+#condition {
+  font-size: var(--condition-size);
+  font-family: var(--secondary-font);
+  font-weight: 600;
+}
+
+#city-search {
+  background: rgba(100, 100, 100, 0.2);
+  color: grey;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+#weather-image {
+  filter: brightness(100%) saturate(0%);
+}
+
+#location-image-container {
+  height: 200px;
+  width: 200px;
+  border-radius: 5000px;
+  background: green;
+  overflow: hidden;
+}
+
+#location-image {
+  height: 300px;
+  width: auto;
+  overflow: hidden;
 }

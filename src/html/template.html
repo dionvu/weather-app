@@ -13,15 +13,24 @@
       <li></li>
       <li>
         <form id="city-form" novalidate>
-          <input type="name" name="city" required id="city-input" placeholder="Enter a city...">
-          <span id="input-error"></span>
+          <input type="name" name="city" required id="city-search" placeholder="Enter a city...">
+          <span id="search-error"></span>
         </form>
       </li>
     </ul>
   </nav>
-  <main>
-    <img src="" id="img" alt="">
-  </main>
+  <div id="weather">
+    <div>
+      <h1><span id="city">San Jose</span>, <span id="location">California</span></h1>
+      <div>
+        <span id="condition">Partly cloudly</span>
+        <img src="" id="weather-image">
+      </div>
+      <div id="location-image-container">
+        <img src="" id="location-image">
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

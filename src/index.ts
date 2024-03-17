@@ -1,36 +1,48 @@
-//import Weather from './weather'
 import { getWeather } from './weather'
 import '../src/style/style.css'
-
+import { getLocationImage } from './image'
 
 const form = document.getElementById('city-form') as HTMLFormElement;
-const input = document.getElementById('city-input') as HTMLInputElement;
-const msg = document.getElementById('input-error') as HTMLSpanElement;
-const img = document.getElementById('img') as HTMLImageElement;
+const search = document.getElementById('city-search') as HTMLInputElement;
+const inputError = document.getElementById('search-error') as HTMLSpanElement;
+const locationImage = document.getElementById('location-image') as HTMLImageElement;
+
+const conditionImage = document.getElementById('weather-image') as HTMLImageElement;
 
 form.addEventListener('submit', async (e) => {
+  e.preventDefault();
   if (form.checkValidity()) {
-    e.preventDefault();
     try {
-      const data = await getWeather(input.value);
+      const data = await getWeather(search.value);
+      const url = await getLocationImage(search.value);
+
       console.log(data.current.condition.text);
-      img.src = data.current.condition.icon;
-      input.value = '';
+      conditionImage.src = data.current.condition.icon;
+      locationImage.src = url;
+
+      search.value = '';
       hideError();
     }
     catch {
       displayError();
-      input.value = '';
     }
+  }
+  else {
+    displayError();
   }
 })
 
 function displayError() {
-  msg.style.display = 'block';
-  msg.textContent = 'Invalid city name!';
+  inputError.style.display = 'block';
+
+  if (search.validity.valueMissing) {
+    inputError.textContent = 'Empty city name';
+  }
+  else
+    inputError.textContent = 'Invalid city name';
 };
 
 function hideError() {
-  msg.textContent = '';
-  msg.style.display = 'none';
+  inputError.textContent = '';
+  inputError.style.display = 'none';
 }
