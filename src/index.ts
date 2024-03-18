@@ -1,6 +1,5 @@
-import Weather, { getWeather } from './weather'
 import '../src/style.css'
-import { getLocationImage } from './image'
+import { updateWeather } from './weather';
 
 const form = document.getElementById('city-form') as HTMLFormElement;
 const search = document.getElementById('city-search') as HTMLInputElement;
@@ -48,32 +47,3 @@ export function hideError() {
   inputError.style.display = 'none';
 }
 
-const city = document.getElementById('city') as HTMLSpanElement;
-const location = document.getElementById('location') as HTMLSpanElement;
-const locationImage = document.getElementById('location-image') as HTMLImageElement;
-
-async function updateWeather(cityName: string) {
-  try {
-    const data = await getWeather(cityName);
-    const url = await getLocationImage(cityName);
-
-    //conditionImage.src = data.current.condition.icon;
-    locationImage.src = url;
-
-    if (data.location.region.length >= data.location.country.length) {
-      location.textContent = data.location.country;
-    }
-    else {
-      location.textContent = data.location.region;
-    }
-
-    city.textContent = data.location.name;
-
-    search.value = '';
-    hideError();
-  }
-  catch (error) {
-    weatherContainer.style.display = 'block';
-    return Promise.reject(`ERROR: ${error}`);
-  }
-};

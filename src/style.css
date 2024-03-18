@@ -12,7 +12,6 @@
   font-size: 16px;
   font-family: sans-serif;
   --light-primary-color: white;
-  --dark-primary-text: black;
 
   --primarly-font: 'FredokaOne';
   --secondary-font: 'Share';
@@ -35,8 +34,11 @@ body {
 
 main {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-end;
   height: 100%;
+  gap: 20px;
 }
 
 nav {
@@ -71,7 +73,6 @@ form {
 
 #weather {
   display: flex;
-  position: absolute;
   padding: 50px;
 }
 
@@ -117,13 +118,14 @@ form {
 #condition {
   font-size: var(--condition-size);
   font-family: var(--secondary-font);
-  font-weight: 600;
+  font-weight: 100;
   margin: 0;
 }
 
 #city-search {
+  font-size: 1.2rem;
   background: rgba(100, 100, 100, 0.2);
-  color: grey;
+  color: white;
   padding: 10px;
   border-radius: 10px;
   border: none;
@@ -134,8 +136,9 @@ form {
 }
 
 #location-image-container {
-  height: 200px;
-  width: 200px;
+  --size: 150px;
+  height: var(--size);
+  width: var(--size);
   border-radius: 5000px;
   overflow: hidden;
 }
@@ -144,4 +147,49 @@ form {
   height: 150%;
   width: auto;
   overflow: hidden;
+  filter: brightness(70%);
+}
+
+#weather-sub {
+  display: flex;
+  gap: 5px;
+  margin-top: 15px;
+  justify-content: space-between;
+}
+
+#localtime {
+  font-size: 2rem;
+}
+
+#temp {
+  font-family: 'FredokaOne';
+  font-size: 5rem;
+}
+
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+svg {
+  height: 4rem;
+}
+
+#temp-icon {
+  height: 4rem;
+}
+
+#weather-sub-sub {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* forecast */
+
+#forecast {
+  height: 100px;
+  width: 100vw;
+  background: black;
 }
