@@ -11,6 +11,9 @@
 :root {
   font-size: 16px;
   font-family: sans-serif;
+  --light-primary-color: white;
+  --dark-primary-text: black;
+
   --primarly-font: 'FredokaOne';
   --secondary-font: 'Share';
 
@@ -20,11 +23,20 @@
 
 body {
   height: 100vh;
-  background: black;
-  color: white;
+  background-image: url('../assets/night.jpg');
+  background-size: cover;
+  color: var(--light-primary-color);
 
   margin: 0;
   padding: 0;
+
+
+}
+
+main {
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
 }
 
 nav {
@@ -63,20 +75,42 @@ form {
   padding: 50px;
 }
 
-#weather>div {
-  margin: 0;
+.fade {
+  animation: fadeIn 1s;
 }
 
-#weather>div>h1 {
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  75% {
+    opacity: 0.8;
+  }
+
+  90% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#weather-main {
+  margin: 0;
+  border-bottom: 2px white solid;
+  padding-bottom: 10px;
+}
+
+#weather>div>div>h1 {
   font-size: var(--location-size);
   font-family: var(--primarly-font);
   font-weight: 500;
-  margin: 0;
-}
-
-#weather>div>div {
-  display: flex;
-  align-items: center;
   margin: 0;
 }
 
@@ -84,6 +118,7 @@ form {
   font-size: var(--condition-size);
   font-family: var(--secondary-font);
   font-weight: 600;
+  margin: 0;
 }
 
 #city-search {
@@ -102,12 +137,11 @@ form {
   height: 200px;
   width: 200px;
   border-radius: 5000px;
-  background: green;
   overflow: hidden;
 }
 
 #location-image {
-  height: 300px;
+  height: 150%;
   width: auto;
   overflow: hidden;
 }

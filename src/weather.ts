@@ -1,3 +1,7 @@
+import { getLocationImage } from "./image";
+import { hideError } from ".";
+
+
 export default interface Weather {
   location: {
     name: string;
@@ -11,6 +15,9 @@ export default interface Weather {
     }
   }
 }
+
+
+//const conditionImage = document.getElementById('weather-image') as HTMLImageElement;
 
 export async function getWeather(city: string): Promise<Weather> {
   try {
@@ -35,3 +42,4 @@ async function getApi(city: string): Promise<Weather> {
 
   return Promise.resolve(data);
 };
+
