@@ -43,18 +43,18 @@ export function updateForcast(data: Weather) {
 };
 
 let mouseDown = false;
-let startX: any, scrollLeft: any;
+let startX: number, scrollLeft: number;
 const slider = document.querySelector('#forecast') as HTMLElement;
 
 const startDragging = (e: any) => {
   mouseDown = true;
   startX = e.pageX - slider.offsetLeft;
   scrollLeft = slider.scrollLeft;
-}
+};
 
-const stopDragging = (e: Event) => {
+const stopDragging = () => {
   mouseDown = false;
-}
+};
 
 const move = (e: any) => {
   e.preventDefault();
@@ -62,7 +62,7 @@ const move = (e: any) => {
   const x = e.pageX - slider.offsetLeft;
   const scroll = x - startX;
   slider.scrollLeft = scrollLeft - scroll;
-}
+};
 
 slider.addEventListener('mousemove', move, false);
 slider.addEventListener('mousedown', startDragging, false);

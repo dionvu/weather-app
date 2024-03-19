@@ -45,6 +45,11 @@ nav {
   width: 100vw;
 }
 
+li {
+  display: flex;
+  align-content: center;
+}
+
 ul {
   display: flex;
   justify-content: space-between;
@@ -52,21 +57,11 @@ ul {
 
   padding: 2px;
   padding-right: 50px;
-  padding-left: 20px;
 }
 
 form {
   display: flex;
   flex-direction: column;
-}
-
-#search-error {
-  display: none;
-  padding-left: 10px;
-  margin-top: 5px;
-  text-align: left;
-  font-size: 1rem;
-  color: red;
 }
 
 #weather {
@@ -136,12 +131,28 @@ form {
   border: none;
 }
 
+#search-icon {
+  margin-top: 10px;
+  height: 30px;
+  width: 50px;
+}
+
+#search-error {
+  display: none;
+  padding-left: 10px;
+  margin-top: 5px;
+  text-align: left;
+  font-size: 1rem;
+  color: red;
+}
+
+
 #weather-image {
   filter: brightness(100%) saturate(0%);
 }
 
 #location-image-container {
-  --size: 140px;
+  --size: 180px;
   height: var(--size);
   width: var(--size);
   border-radius: 5000px;
@@ -149,7 +160,7 @@ form {
 }
 
 #location-image {
-  height: 150%;
+  height: 125%;
   width: auto;
   overflow: hidden;
   filter: brightness(70%);
@@ -200,21 +211,27 @@ svg {
 }
 
 #forecast {
-  height: 130px;
-  width: 70vw;
+  height: 170px;
+  width: 80vw;
   background: transparent;
   overflow: scroll;
-
   display: flex;
   gap: 10px;
+
 
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#forecast::-webkit-overflow-scrolling {
+  display: none;
 }
 
 .forecast-item {
-  min-width: 50px;
+  min-width: 80px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -225,10 +242,10 @@ svg {
 
 .forecast-temp {
   font-family: 'FredokaOne';
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .forecast-time {
   font-family: 'Share';
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
