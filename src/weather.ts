@@ -46,7 +46,7 @@ export async function getWeather(city: string): Promise<Weather> {
 };
 
 export async function getApi(city: string): Promise<Weather> {
-  const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=2b3d697043e1487987335611240703&q=${city}`, { mode: 'cors' });
+  const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=2b3d697043e1487987335611240703&q=${city}`, { mode: 'cors' });
 
   if (!response.ok)
     return Promise.reject(new Error(`ERROR: Unable to fetch data for city: ${city}.`));
