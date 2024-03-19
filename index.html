@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+<script defer src="bundle.js"></script></head>
+
+<body>
+  <nav>
+    <ul>
+      <li></li>
+      <li>
+        <svg id="search-icon" fill="#ffffff" height="200px" width="200px" version="1.1" id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 488.4 488.4"
+          xml:space="preserve" style="--darkreader-inline-fill: #1d1f20;" data-darkreader-inline-fill="">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <g>
+              <g>
+                <path
+                  d="M0,203.25c0,112.1,91.2,203.2,203.2,203.2c51.6,0,98.8-19.4,134.7-51.2l129.5,129.5c2.4,2.4,5.5,3.6,8.7,3.6 s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-129.6-129.5c31.8-35.9,51.2-83,51.2-134.7c0-112.1-91.2-203.2-203.2-203.2 S0,91.15,0,203.25z M381.9,203.25c0,98.5-80.2,178.7-178.7,178.7s-178.7-80.2-178.7-178.7s80.2-178.7,178.7-178.7 S381.9,104.65,381.9,203.25z">
+                </path>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <form id="city-form" novalidate>
+          <input type="name" name="city" required id="city-search" placeholder="Enter a city...">
+          <span id="search-error"></span>
+        </form>
+      </li>
+    </ul>
+  </nav>
+  <main>
+    <div id="forecast-container">
+      <div id="forecast">
+      </div>
+    </div>
+
+    <div id="weather">
+      <div>
+        <!-- <img src="" id="weather-image"> -->
+        <div id="weather-main">
+          <h1><span id="city"></span>, <span id="location"></span></h1>
+          <span id="condition"></span>
+        </div>
+
+        <div id="weather-sub">
+
+          <div class="info-item">
+            <svg id="temp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#000000">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <defs>
+                  <style>
+                    .cls-1 {
+                      fill: none;
+                      stroke: #ffffff;
+                      stroke-miterlimit: 10;
+                      stroke-width: 1.91px;
+                    }
+                  </style>
+                </defs>
+                <g id="thermometer">
+                  <circle class="cls-1" cx="6.27" cy="17.73" r="0.95"></circle>
+                  <line class="cls-1" x1="10.6" y1="13.4" x2="5.99" y2="18.01"></line>
+                  <line class="cls-1" x1="12.63" y1="11.37" x2="11.28" y2="12.72"></line>
+                  <path class="cls-1"
+                    d="M22.5,4.87a3.37,3.37,0,0,0-5.76-2.38L6.27,13a4.77,4.77,0,1,0,4.78,4.78L21.51,7.26A3.38,3.38,0,0,0,22.5,4.87Z">
+                  </path>
+                  <line class="cls-1" x1="14.86" y1="10.09" x2="16.77" y2="12"></line>
+                  <line class="cls-1" x1="16.77" y1="8.18" x2="18.68" y2="10.09"></line>
+                  <line class="cls-1" x1="18.68" y1="6.27" x2="20.59" y2="8.18"></line>
+                </g>
+              </g>
+            </svg>
+            <span id="temp"></span>
+          </div>
+
+
+          <div id="weather-sub-sub">
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M12 7V12L9.5 10.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                    stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+              <span id="localtime"></span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="location-image-container">
+        <img src="" id="location-image">
+      </div>
+    </div>
+
+  </main>
+</body>
+
+</html>
