@@ -1,5 +1,5 @@
+import { updateForcast } from "./forecast";
 import { getLocationImage } from "./image";
-import { hideError } from ".";
 
 export default interface Weather {
   location: {
@@ -7,15 +7,32 @@ export default interface Weather {
     region: string;
     country: string;
     localtime: string;
-  };
+  },
   current: {
     condition: {
       text: string;
       icon: string;
     }
     temp_f: number;
-  }
-}
+  },
+  forecast: {
+    forecastday: {
+      hour: {
+        time: string;
+        temp_f: number;
+      }[]
+    }[]
+  },
+};
+
+const city = document.getElementById('city') as HTMLSpanElement;
+const location = document.getElementById('location') as HTMLSpanElement;
+const condition = document.getElementById('condition') as HTMLSpanElement;
+const locationImage = document.getElementById('location-image') as HTMLImageElement;
+const localTime = document.getElementById('localtime') as HTMLSpanElement;
+const temp = document.getElementById('temp') as HTMLElement;
+const search = document.getElementById('city-search') as HTMLInputElement;
+const weatherContainer = document.getElementById('weather') as HTMLElement;
 
 export async function getWeather(city: string): Promise<Weather> {
   try {
@@ -28,52 +45,38 @@ export async function getWeather(city: string): Promise<Weather> {
   }
 };
 
-async function getApi(city: string): Promise<Weather> {
-  const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=2b3d697043e1487987335611240703&q=${city}`, { mode: 'cors' });
+export async function getApi(city: string): Promise<Weather> {
+  const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=2b3d697043e1487987335611240703&q=${city}`, { mode: 'cors' });
 
   if (!response.ok)
     return Promise.reject(new Error(`ERROR: Unable to fetch data for city: ${city}.`));
 
   const data: Weather = await response.json();
 
-  console.table(data);
-
   return Promise.resolve(data);
 };
-
-
-const city = document.getElementById('city') as HTMLSpanElement;
-const location = document.getElementById('location') as HTMLSpanElement;
-const locationImage = document.getElementById('location-image') as HTMLImageElement;
-const localTime = document.getElementById('localtime') as HTMLSpanElement;
-const temp = document.getElementById('temp') as HTMLElement;
-
-const search = document.getElementById('city-search') as HTMLInputElement;
-const weatherContainer = document.getElementById('weather') as HTMLElement;
 
 export async function updateWeather(cityName: string) {
   try {
     const data = await getWeather(cityName);
     const url = await getLocationImage(cityName);
 
-    //conditionImage.src = data.current.condition.icon;
-    locationImage.src = url;
-
-    if (data.location.region.length >= data.location.country.length) {
+    if (data.location.region.length === 0)
       location.textContent = data.location.country;
-    }
-    else {
+    else if (data.location.region.length <= data.location.country.length)
       location.textContent = data.location.region;
-    }
+    else
+      location.textContent = data.location.country;
 
+    locationImage.src = url;
     city.textContent = data.location.name;
-
+    condition.textContent = data.current.condition.text;
     localTime.textContent = data.location.localtime;
-
     temp.textContent = data.current.temp_f.toString() + 'F';
-
     search.value = '';
-    hideError();
+
+    updateForcast(data);
+
   }
   catch (error) {
     weatherContainer.style.display = 'block';

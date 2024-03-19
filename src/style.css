@@ -16,7 +16,7 @@
   --primarly-font: 'FredokaOne';
   --secondary-font: 'Share';
 
-  --location-size: 4rem;
+  --location-size: 3.5rem;
   --condition-size: 2rem;
 }
 
@@ -28,8 +28,6 @@ body {
 
   margin: 0;
   padding: 0;
-
-
 }
 
 main {
@@ -67,7 +65,7 @@ form {
   padding-left: 10px;
   margin-top: 5px;
   text-align: left;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: red;
 }
 
@@ -102,6 +100,13 @@ form {
   }
 }
 
+#weather {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 40px;
+}
+
 #weather-main {
   margin: 0;
   border-bottom: 2px white solid;
@@ -123,7 +128,7 @@ form {
 }
 
 #city-search {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   background: rgba(100, 100, 100, 0.2);
   color: white;
   padding: 10px;
@@ -136,7 +141,7 @@ form {
 }
 
 #location-image-container {
-  --size: 150px;
+  --size: 140px;
   height: var(--size);
   width: var(--size);
   border-radius: 5000px;
@@ -158,14 +163,13 @@ form {
 }
 
 #localtime {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 #temp {
   font-family: 'FredokaOne';
-  font-size: 5rem;
+  font-size: 4rem;
 }
-
 
 .info-item {
   display: flex;
@@ -174,11 +178,11 @@ form {
 }
 
 svg {
-  height: 4rem;
+  height: 3rem;
 }
 
 #temp-icon {
-  height: 4rem;
+  height: 3.5rem;
 }
 
 #weather-sub-sub {
@@ -187,9 +191,44 @@ svg {
 }
 
 /* forecast */
+#forecast-container {
+  position: absolute;
+  top: 40vh;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
 
 #forecast {
-  height: 100px;
-  width: 100vw;
-  background: black;
+  height: 130px;
+  width: 70vw;
+  background: transparent;
+  overflow: scroll;
+
+  display: flex;
+  gap: 10px;
+
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.forecast-item {
+  min-width: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(0, 00, 0, 0.6);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.forecast-temp {
+  font-family: 'FredokaOne';
+  font-size: 1.5rem;
+}
+
+.forecast-time {
+  font-family: 'Share';
+  font-size: 1.5rem;
 }

@@ -37,7 +37,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'todo',
       filename: 'index.html',
-      template: './src/html/template.html'
+      template: './src/template.html'
     })
   ]
 }
