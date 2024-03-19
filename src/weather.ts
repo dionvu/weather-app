@@ -1,5 +1,5 @@
-import { updateForcast } from "./forecast";
 import { getLocationImage } from "./image";
+import { updateForcast } from "./forecast";
 
 export default interface Weather {
   location: {
@@ -28,9 +28,9 @@ export default interface Weather {
 const city = document.getElementById('city') as HTMLSpanElement;
 const location = document.getElementById('location') as HTMLSpanElement;
 const condition = document.getElementById('condition') as HTMLSpanElement;
+const tempurature = document.getElementById('temp') as HTMLElement;
 const locationImage = document.getElementById('location-image') as HTMLImageElement;
 const localTime = document.getElementById('localtime') as HTMLSpanElement;
-const temp = document.getElementById('temp') as HTMLElement;
 const search = document.getElementById('city-search') as HTMLInputElement;
 const weatherContainer = document.getElementById('weather') as HTMLElement;
 
@@ -72,14 +72,11 @@ export async function updateWeather(cityName: string) {
     city.textContent = data.location.name;
     condition.textContent = data.current.condition.text;
     localTime.textContent = data.location.localtime;
-    temp.textContent = data.current.temp_f.toString() + 'F';
+    tempurature.textContent = data.current.temp_f.toString() + 'F';
     search.value = '';
-
-    updateForcast(data);
-
   }
   catch (error) {
-    weatherContainer.style.display = 'block';
+    weatherContainer.style.display = 'flex';
     return Promise.reject(`ERROR: ${error}`);
   }
 };

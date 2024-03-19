@@ -1,8 +1,13 @@
-import Weather from "./weather";
+import { getWeather } from "./weather";
 
 const forecast = document.getElementById('forecast') as HTMLElement;
 
-export function updateForcast(data: Weather) {
+/**
+ * Updates the forecast with the time and temperature at each hour of the day.
+ * @param cityName The name of the city to fetch information for.
+ */
+export async function updateForcast(cityName: string) {
+  const data = await getWeather(cityName);
   forecast.innerHTML = '';
 
   let highest = -1000;

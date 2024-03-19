@@ -1,2 +1,2 @@
 # weather-app
-So uh.. the weather nice huh?
+So uh.. the weather is nice huh?

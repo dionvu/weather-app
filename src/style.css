@@ -160,7 +160,7 @@ form {
 }
 
 #location-image {
-  height: 125%;
+  height: 135%;
   width: auto;
   overflow: hidden;
   filter: brightness(70%);
@@ -178,7 +178,7 @@ form {
 }
 
 #temp {
-  font-family: 'FredokaOne';
+  font-family: var(--primarly-font);
   font-size: 4rem;
 }
 
@@ -241,11 +241,11 @@ svg {
 }
 
 .forecast-temp {
-  font-family: 'FredokaOne';
+  font-family: var(--primarly-font);
   font-size: 2rem;
 }
 
 .forecast-time {
-  font-family: 'Share';
+  font-family: var(--secondary-font);
   font-size: 2rem;
 }
