@@ -1,5 +1,4 @@
 import { getLocationImage } from "./image";
-import { updateForcast } from "./forecast";
 
 export default interface Weather {
   location: {
@@ -34,10 +33,22 @@ const localTime = document.getElementById('localtime') as HTMLSpanElement;
 const search = document.getElementById('city-search') as HTMLInputElement;
 const weatherContainer = document.getElementById('weather') as HTMLElement;
 
+/**
+ * @brief Fetches weather data for given city.
+ * @param city The name of the city.
+ * @returns Promise<Weather>
+ */
 export async function getWeather(city: string): Promise<Weather> {
+
   try {
-    const data: Weather = await getApi(city);
-    return data;
+    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=2b3d697043e1487987335611240703&q=${city}`, { mode: 'cors' });
+
+    if (!response.ok)
+      return Promise.reject(new Error(`ERROR: Unable to fetch data for city: ${city}.`));
+
+    const data: Weather = await response.json();
+
+    return Promise.resolve(data);
   }
   catch (error) {
     console.log(`ERROR: ${error}.`)
@@ -45,18 +56,11 @@ export async function getWeather(city: string): Promise<Weather> {
   }
 };
 
-export async function getApi(city: string): Promise<Weather> {
-  const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=2b3d697043e1487987335611240703&q=${city}`, { mode: 'cors' });
-
-  if (!response.ok)
-    return Promise.reject(new Error(`ERROR: Unable to fetch data for city: ${city}.`));
-
-  const data: Weather = await response.json();
-
-  return Promise.resolve(data);
-};
-
-export async function updateWeather(cityName: string) {
+/**
+ * @brief Updates the weather at current time (forecast handled seperately).
+ * @param cityName The name of the city to display weather information for.
+ */
+export async function updateWeather(cityName: string): Promise<void> {
   try {
     const data = await getWeather(cityName);
     const url = await getLocationImage(cityName);

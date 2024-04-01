@@ -11,16 +11,21 @@ const forecastContainer = document.getElementById('forecast') as HTMLElement;
 updateWeather('London');
 updateForcast('London');
 
+/**
+ * @brief Fades-in a dom element.
+ * @param element The container or element to be faded-in.
+ */
 function fadeIn(element: HTMLElement): void {
-  element.style.display = 'none';
   element.classList.remove('fade');
-
-  setTimeout(() => {
-    element.style.display = 'flex';
-    element.classList.add('fade');
-  }, 0);
+  element.style.display = 'none';
+  element.offsetHeight;
+  element.style.display = 'flex';
+  element.classList.add('fade');
 };
 
+/**
+ * @brief Handles the input in city search bar.
+ */
 cityInput.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (cityInput.checkValidity()) {
@@ -41,6 +46,9 @@ cityInput.addEventListener('submit', async (e) => {
     displayError();
 });
 
+/**
+ * @brief Displays an error message below city search bar.
+ */
 function displayError() {
   fadeIn(inputError);
 
@@ -50,6 +58,9 @@ function displayError() {
     inputError.textContent = 'Invalid city name';
 };
 
+/**
+ * @brief Removes error message below city search bar.
+ */
 function hideError() {
   inputError.textContent = '';
   inputError.style.display = 'none';
